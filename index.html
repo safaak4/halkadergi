@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mobil için responsive yapısı -->
     <title>Halka Dergi</title>
     <link rel="stylesheet" href="css/bootstrap.css">
 
     <style>
-
         body{
             font-family: Raleway;
         }
@@ -17,9 +17,8 @@
         }
 
         .mask1 {
-            -webkit-mask-image: linear-gradient(to left, black 0%, transparent 70%);
-            mask-image: linear-gradient(to left, black 0%, transparent 70%);
-
+            -webkit-mask-image: linear-gradient(to left, black 0%, transparent 75%);
+            mask-image: linear-gradient(to left, black 0%, transparent 75%);
             position: absolute;
             width: 100%;
             object-fit: cover;
@@ -38,7 +37,6 @@
         .small-image {
             transition: opacity 1s ease; /* Yumuşak geçiş efekti */
         }
-
 
         /* Navbar'ın önde görünmesi için z-index ayarı */
         nav {
@@ -68,19 +66,138 @@
         .kutucuk{
             background: #ffffff;
             border-radius: 17px;
-
             transition: box-shadow 0.3s ease, background 0.3s ease; /* Geçiş efekti eklendi */
+
+            flex: 0 0 calc(24% - 20px);
+            overflow: hidden;
+            margin: 8px;
         }
 
         .kutucuk:hover{
-
             border-radius: 17px;
             box-shadow:  14px 14px 44px #c4c4c4;
-
         }
 
+        .kutucuk img {
+            width: 100%;
+            margin: auto;
+            display: block;
+        }
+
+        .kutucuk h4 {
+            margin: 12px;
+            text-align: left;
+        }
+
+        .kutucuk h4 span {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            padding-bottom: 5px; /* Çizgi ile metin arasında boşluk */
+        }
+
+        .kutucuk h4 span::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px; /* Çizgi kalınlığı */
+            background-color: black; /* Çizgi rengi */
+            transition: width 0.3s ease-out;
+        }
+
+        /* İmleç ile üstüne gelindiğinde her kelime için zaman aralığı */
+        .kutucuk:hover h4 span:nth-child(1)::after {
+            width: 100%;
+            transition-delay: 0s; /* İlk kelime hemen çizgi çizer */
+        }
+
+        .kutucuk:hover h4 span:nth-child(2)::after {
+            width: 100%;
+            transition-delay: 0.3s; /* İkinci kelime 0.3 saniye sonra */
+        }
+
+        .kutucuk:hover h4 span:nth-child(3)::after {
+            width: 100%;
+            transition-delay: 0.6s; /* Üçüncü kelime 0.6 saniye sonra */
+        }
+
+        .kutucuk:hover h4 span:nth-child(4)::after {
+            width: 100%;
+            transition-delay: 0.9s; /* Dördüncü kelime 0.9 saniye sonra */
+        }
+
+        .kutucuk:hover h4 span:nth-child(5)::after {
+            width: 100%;
+            transition-delay: 1.2s; /* Beşinci kelime 1.2 saniye sonra */
+        }
+
+        .kutucuk:hover h4 span:nth-child(6)::after {
+            width: 100%;
+            transition-delay: 1.5s; /* Altıncı kelime 1.5 saniye sonra */
+        }
+
+        .basliklar{
+            margin-top: 320px; margin-left: -160px;
+        }
+
+        /* Mobil için düzenlemeler */
+        @media (max-width: 768px) {
+
+            .kutucuk {
+                flex: 0 0 calc(50% - 20px); /* 2 tane yan yana göstermek için genişliği ayarla */
+            }
+
+            .kutucuk h4{
+                font-size: 17px;
+            }
 
 
+
+
+            .basliklar{
+                padding-top: 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .mask1 {
+                mask-image: none; /* Gradyanı kaldır */
+                opacity: 0.1; /* Opaklık ayarı */
+            }
+
+            .content {
+                flex-direction: column;
+                text-align: center;
+                margin: 0;
+                margin-top: 90px;
+
+            }
+
+            .small-image {
+                margin: auto;
+
+                width: 74%; /* Küçük resmi ortalamak için genişlik ayarlandı */
+            }
+
+            .content div {
+                margin: 0;
+            }
+
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            h6 {
+                font-size: 14px;
+            }
+        }
     </style>
 
 </head>
@@ -89,7 +206,6 @@
 
 <nav class="navbar navbar-expand-lg" style="position: absolute; background-color: white; width: 100%; z-index: 10;">
     <div class="container">
-
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -98,55 +214,27 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link active navitemsfont" href="index.html">Ana Sayfa</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link navitemsfont" href="hakkimizda.html">Halka Blog</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link navitemsfont" href="haberler.html">Halka'nın Gündemi</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link navitemsfont" href="resmiduyurular.html">Yazarlar</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link navitemsfont" href="burs-basvurusu">Dosya</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link navitemsfont" href="burs-basvurusu">Söyleşi</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link navitemsfont" href="burs-basvurusu">Sayılar</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link navitemsfont" href="burs-basvurusu">Hakkımızda</a>
-                </li>
-
+                <li class="nav-item"><a class="nav-link active navitemsfont" href="index.html">Ana Sayfa</a></li>
+                <li class="nav-item"><a class="nav-link navitemsfont" href="">Halka Blog</a></li>
+                <li class="nav-item"><a class="nav-link navitemsfont" href="">Halka'nın Gündemi</a></li>
+                <li class="nav-item"><a class="nav-link navitemsfont" href="">Yazarlar</a></li>
+                <li class="nav-item"><a class="nav-link navitemsfont" href="">Dosya</a></li>
+                <li class="nav-item"><a class="nav-link navitemsfont" href="">Söyleşi</a></li>
+                <li class="nav-item"><a class="nav-link navitemsfont" href="">Sayılar</a></li>
+                <li class="nav-item"><a class="nav-link navitemsfont" href="">Hakkımızda</a></li>
             </ul>
-
         </div>
-
     </div>
 </nav>
 
 <section>
-
-
     <div style="position: relative">
         <img class="mask1" id="mainImage" src="gorseller/halka05_kapak.png">
         <div class="content" id="content">
             <div>
                 <img class="col-8 small-image"  src="gorseller/halka05_kapak.png" id="smallImage">
             </div>
-            <div style="margin-top: 320px; margin-left: -160px;">
+            <div class="basliklar" style="">
                 <h1 id="title">Hegemonya ve Temsil Krizi</h1>
                 <h3 id="issue">Beşinci Sayı</h3>
                 <h6 id="date">Temmuz-Ağustos 2024</h6>
@@ -215,7 +303,16 @@
                 dateElement.innerText = images[currentIndex].date;
 
                 // Fade in
-                imageElement.style.opacity = 1;
+                const screenWidth = window.innerWidth;
+
+                if (screenWidth <= 768) {
+                    // Mobildeyken opacity'yi sabit tut
+                    imageElement.style.opacity = 0.1;
+                } else {
+                    // Masaüstünde fade in ile eski davranış
+                    imageElement.style.opacity = 1;
+                }
+
                 smallImageElement.style.opacity = 1; // Küçük görselin geçişi
                 document.getElementById('content').style.opacity = 1;
             }, 1000); // 1 saniye (fade out süresi)
@@ -224,80 +321,138 @@
         // Delay before fading out smallImage
         setInterval(() => {
             changeContent();
-        }, 8500); // Her 6 saniyede bir değiştir
+        }, 6500); // Her 6 saniyede bir değiştir
 
 
     </script>
 
-
-    <div class="container" style="padding-top: 105vh; ">
-
+    <div class="container" style="padding-top: 105vh; margin: auto">
         <h2 style="margin: auto; text-align: center; font-family: 'Raleway Black'">Halka Yazıları</h2>
 
-        <div style="display: flex; flex-wrap: wrap;;">
-
-            <div class="kutucuk" style="flex: 0 0 calc(24% - 20px); overflow: hidden; margin: 15px;"> <!-- Margin artırıldı -->
-                <img style="width: 100%; margin: auto; display: block;" src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
-                <h4 style="margin: 12px; text-align: left;">Atölye: Hristiyan Komünistler ve Dinî Sosyalizmler</h4>
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly">
+            <div class="kutucuk">
+                <img  src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
+                <h4 >
+                    <span>Atölye:</span>
+                    <span>Hristiyan</span>
+                    <span>Komünistler</span>
+                    <span>ve</span>
+                    <span>Dinî</span>
+                    <span>Sosyalizmler</span>
+                </h4>
             </div>
 
-            <div class="kutucuk" style="flex: 0 0 calc(24% - 20px); overflow: hidden; margin: 15px;">
-                <img style="width: 100%; margin: auto; display: block;" src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
-                <h4 style="margin: 12px; text-align: left;">Atölye: Hristiyan Komünistler ve Dinî Sosyalizmler</h4>
+            <div class="kutucuk">
+                <img src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
+                <h4>
+                    <span>Atölye:</span>
+                    <span>Hristiyan</span>
+                    <span>Komünistler</span>
+                    <span>ve</span>
+                    <span>Dinî</span>
+                    <span>Sosyalizmler</span>
+                </h4>
             </div>
 
-            <div class="kutucuk" style="flex: 0 0 calc(24% - 20px); overflow: hidden; margin: 15px;">
-                <img style="width: 100%; margin: auto; display: block;" src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
-                <h4 style="margin: 12px; text-align: left;">Atölye: Hristiyan Komünistler ve Dinî Sosyalizmler</h4>
+            <div class="kutucuk">
+                <img src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
+                <h4>
+                    <span>Atölye:</span>
+                    <span>Hristiyan</span>
+                    <span>Komünistler</span>
+                    <span>ve</span>
+                    <span>Dinî</span>
+                    <span>Sosyalizmler</span>
+                </h4>
             </div>
 
-            <div class="kutucuk" style="flex: 0 0 calc(24% - 20px); overflow: hidden; margin: 15px;">
-                <img style="width: 100%; margin: auto; display: block;" src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
-                <h4 style="margin: 12px; text-align: left;">Atölye: Hristiyan Komünistler ve Dinî Sosyalizmler</h4>
+            <div class="kutucuk">
+                <img src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
+                <h4>
+                    <span>Atölye:</span>
+                    <span>Hristiyan</span>
+                    <span>Komünistler</span>
+                    <span>ve</span>
+                    <span>Dinî</span>
+                    <span>Sosyalizmler</span>
+                </h4>
             </div>
 
-            <div class="kutucuk" style="flex: 0 0 calc(24% - 20px); overflow: hidden; margin: 15px;">
-                <img style="width: 100%; margin: auto; display: block;" src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
-                <h4 style="margin: 12px; text-align: left;">Atölye: Hristiyan Komünistler ve Dinî Sosyalizmler</h4>
+            <div class="kutucuk">
+                <img src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
+                <h4>
+                    <span>Atölye:</span>
+                    <span>Hristiyan</span>
+                    <span>Komünistler</span>
+                    <span>ve</span>
+                    <span>Dinî</span>
+                    <span>Sosyalizmler</span>
+                </h4>
             </div>
 
-            <div class="kutucuk" style="flex: 0 0 calc(24% - 20px); overflow: hidden; margin: 15px;">
-                <img style="width: 100%; margin: auto; display: block;" src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
-                <h4 style="margin: 12px; text-align: left;">Atölye: Hristiyan Komünistler ve Dinî Sosyalizmler</h4>
+            <div class="kutucuk">
+                <img src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
+                <h4>
+                    <span>Atölye:</span>
+                    <span>Hristiyan</span>
+                    <span>Komünistler</span>
+                    <span>ve</span>
+                    <span>Dinî</span>
+                    <span>Sosyalizmler</span>
+                </h4>
             </div>
 
-            <div class="kutucuk" style="flex: 0 0 calc(24% - 20px); overflow: hidden; margin: 15px;">
-                <img style="width: 100%; margin: auto; display: block;" src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
-                <h4 style="margin: 12px; text-align: left;">Atölye: Hristiyan Komünistler ve Dinî Sosyalizmler</h4>
+            <div class="kutucuk">
+                <img src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
+                <h4>
+                    <span>Atölye:</span>
+                    <span>Hristiyan</span>
+                    <span>Komünistler</span>
+                    <span>ve</span>
+                    <span>Dinî</span>
+                    <span>Sosyalizmler</span>
+                </h4>
             </div>
 
-            <div class="kutucuk" style="flex: 0 0 calc(24% - 20px); overflow: hidden; margin: 15px;">
-                <img style="width: 100%; margin: auto; display: block;" src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
-                <h4 style="margin: 12px; text-align: left;">Atölye: Hristiyan Komünistler ve Dinî Sosyalizmler</h4>
+            <div class="kutucuk">
+                <img src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
+                <h4>
+                    <span>Atölye:</span>
+                    <span>Hristiyan</span>
+                    <span>Komünistler</span>
+                    <span>ve</span>
+                    <span>Dinî</span>
+                    <span>Sosyalizmler</span>
+                </h4>
             </div>
 
-
-            <div class="kutucuk" style="flex: 0 0 calc(24% - 20px); overflow: hidden; margin: 15px;">
-                <img style="width: 100%; margin: auto; display: block;" src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
-                <h4 style="margin: 12px; text-align: left;">Atölye: Hristiyan Komünistler ve Dinî Sosyalizmler</h4>
+            <div class="kutucuk">
+                <img src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
+                <h4>
+                    <span>Atölye:</span>
+                    <span>Hristiyan</span>
+                    <span>Komünistler</span>
+                    <span>ve</span>
+                    <span>Dinî</span>
+                    <span>Sosyalizmler</span>
+                </h4>
             </div>
 
-
-            <div class="kutucuk" style="flex: 0 0 calc(24% - 20px); overflow: hidden; margin: 15px;">
-                <img style="width: 100%; margin: auto; display: block;" src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
-                <h4 style="margin: 12px; text-align: left;">Atölye: Hristiyan Komünistler ve Dinî Sosyalizmler</h4>
+            <div class="kutucuk">
+                <img src="gorseller/hristiyan-komunistler-ve-dini-sosyalizmler.png">
+                <h4>
+                    <span>Atölye:</span>
+                    <span>Hristiyan</span>
+                    <span>Komünistler</span>
+                    <span>ve</span>
+                    <span>Dinî</span>
+                    <span>Sosyalizmler</span>
+                </h4>
             </div>
+
+            <!-- Diğer kutucuklar burada... -->
         </div>
-
-
     </div>
-
-
-
-
-
-
-
 
 
 </section>
